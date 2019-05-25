@@ -95,9 +95,9 @@ public class RegistryHandler
     
     public static void init()
     {
-        //GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
-        
         WeatherItems.register();
         WeatherSounds.register();
+        
+        WeatherEntities.registerEntities();
     }
 }
