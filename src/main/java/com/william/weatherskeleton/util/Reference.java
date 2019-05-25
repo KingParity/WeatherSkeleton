@@ -1,10 +1,5 @@
 package com.william.weatherskeleton.util;
 
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-
 public class Reference
 {	
 	public static final String NAME = "Weather Skeleton";
