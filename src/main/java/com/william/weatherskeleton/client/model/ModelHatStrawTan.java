@@ -4,9 +4,9 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelTanHat2 extends ModelWeatherSkeleton
+public class ModelHatStrawTan extends ModelWeatherSkeleton
 {
-    public ModelTanHat2()
+    public ModelHatStrawTan()
     {
         textureWidth = 244;
         textureHeight = 195;

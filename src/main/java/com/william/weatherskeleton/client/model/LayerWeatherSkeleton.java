@@ -24,16 +24,19 @@ public class LayerWeatherSkeleton implements LayerRenderer<EntityWeatherSkeleton
         switch(entitylivingbaseIn.getHat())
         {
             case 0:
-                this.hat = new ModelWhiteHat();
+                this.hat = new ModelHatStrawWhite();
                 break;
             case 1:
-                this.hat = new ModelTanHat();
+                this.hat = new ModelHatTan();
                 break;
             case 2:
-                this.hat = new ModelTanHat2();
+                this.hat = new ModelHatStrawTan();
+                break;
+            case 3:
+                this.hat = new ModelHatBlack();
                 break;
             default:
-                this.hat = new ModelBlackHat();
+                this.hat = new ModelHatStrawBlack();
                 break;
         }
     
@@ -48,6 +51,9 @@ public class LayerWeatherSkeleton implements LayerRenderer<EntityWeatherSkeleton
             case 2:
                 this.head = new ModelHead4();
                 break;
+            case 3:
+                this.head = new ModelHead5();
+                break;
             default:
                 this.head = new ModelHead1();
                 break;
@@ -56,22 +62,28 @@ public class LayerWeatherSkeleton implements LayerRenderer<EntityWeatherSkeleton
         switch(entitylivingbaseIn.getShirt())
         {
             case 0:
-                this.shirt = new ModelRedShirt();
+                this.shirt = new ModelShirtRed();
                 break;
             case 1:
-                this.shirt = new ModelCCShirt();
+                this.shirt = new ModelShirtCC();
                 break;
             case 2:
-                this.shirt = new ModelCCShirt2();
+                this.shirt = new ModelShirtCCSwirl();
                 break;
             case 3:
-                this.shirt = new ModelVSShirt();
+                this.shirt = new ModelShirtVS();
                 break;
             case 4:
-                this.shirt = new ModelBLShirt();
+                this.shirt = new ModelShirtBL();
+                break;
+            case 5:
+                this.shirt = new ModelShirtSS();
+                break;
+            case 6:
+                this.shirt = new ModelShirtFL();
                 break;
             default:
-                this.shirt = new ModelNoShirt();
+                this.shirt = new ModelShirtNone();
                 break;
         }
         

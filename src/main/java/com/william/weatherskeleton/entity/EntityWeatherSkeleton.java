@@ -36,7 +36,6 @@ public class EntityWeatherSkeleton extends EntityCreature
     public EntityWeatherSkeleton(World worldIn)
     {
         super(worldIn);
-        //this.setSize(0.9F, 1.4F);
         this.setSize(0.6F, 2.1F);
     }
     
@@ -44,9 +43,9 @@ public class EntityWeatherSkeleton extends EntityCreature
     protected void entityInit()
     {
         super.entityInit();
-        this.dataManager.register(HAT, Integer.valueOf(1));
-        this.dataManager.register(HEAD, Integer.valueOf(1));
-        this.dataManager.register(SHIRT, Integer.valueOf(1));
+        this.dataManager.register(HAT, 1);
+        this.dataManager.register(HEAD, 1);
+        this.dataManager.register(SHIRT, 1);
     }
     
     @Override
@@ -54,7 +53,7 @@ public class EntityWeatherSkeleton extends EntityCreature
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
-        this.tasks.addTask(2, new EntityAIWanderAvoidWater(this, 1.0D));
+        this.tasks.addTask(2, new EntityAIWanderAvoidWater(this, 0.6D));
         this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(4, new EntityAILookIdle(this));
     }
@@ -145,17 +144,17 @@ public class EntityWeatherSkeleton extends EntityCreature
     
     public static int getRandomHat(Random random)
     {
-        return random.nextInt(4);
+        return random.nextInt(5);
     }
     
     public static int getRandomHead(Random random)
     {
-        return random.nextInt(4);
+        return random.nextInt(5);
     }
     
     public static int getRandomShirt(Random random)
     {
-        return random.nextInt(6);
+        return random.nextInt(8);
     }
     
     public void setHat(int hat)

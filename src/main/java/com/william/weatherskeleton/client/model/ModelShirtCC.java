@@ -6,9 +6,9 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelCCShirt extends ModelWeatherSkeleton
+public class ModelShirtCC extends ModelWeatherSkeleton
 {
-    public ModelCCShirt()
+    public ModelShirtCC()
     {
         textureWidth = 244;
         textureHeight = 195;

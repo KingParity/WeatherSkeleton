@@ -6,9 +6,9 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelBLShirt extends ModelWeatherSkeleton
+public class ModelShirtBL extends ModelWeatherSkeleton
 {
-    public ModelBLShirt()
+    public ModelShirtBL()
     {
         textureWidth = 244;
         textureHeight = 195;
