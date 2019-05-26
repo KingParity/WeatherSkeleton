@@ -37,6 +37,7 @@ public class EntityWeatherSkeleton extends EntityCreature
     {
         super(worldIn);
         this.setSize(0.6F, 2.1F);
+        this.setCanPickUpLoot(true);
     }
     
     @Override
@@ -129,6 +130,8 @@ public class EntityWeatherSkeleton extends EntityCreature
         this.setHat(compound.getInteger("Hat"));
         this.setHead(compound.getInteger("Head"));
         this.setShirt(compound.getInteger("Shirt"));
+        
+        this.setCanPickUpLoot(true);
     }
     
     @Nullable

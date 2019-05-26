@@ -42,7 +42,7 @@ public class WeatherEntities
                         //Creature type to copy from
                         biome.getSpawnableList(creatureTypeToAdd)
                                 //Adds the weather skeleton to the biome's spawnable
-                                .add(new Biome.SpawnListEntry(classToAdd, 1, 1, 2)));
+                                .add(new Biome.SpawnListEntry(classToAdd, 10, 1, 2)));
             }
         }
     }

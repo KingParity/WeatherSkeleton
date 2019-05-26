@@ -1,5 +1,6 @@
 package com.william.weatherskeleton.client.render;
 
+import com.william.weatherskeleton.client.layer.LayerWSHeldItem;
 import com.william.weatherskeleton.client.layer.LayerWSParts;
 import com.william.weatherskeleton.client.model.ModelWeatherSkeleton;
 import com.william.weatherskeleton.entity.EntityWeatherSkeleton;
@@ -16,6 +17,7 @@ public class RenderWeatherSkeleton extends RenderLiving<EntityWeatherSkeleton>
     {
         super(manager, new ModelWeatherSkeleton(), 0.5F);
         this.addLayer(new LayerWSParts(this));
+        this.addLayer(new LayerWSHeldItem(this));
     }
     
     @Override
