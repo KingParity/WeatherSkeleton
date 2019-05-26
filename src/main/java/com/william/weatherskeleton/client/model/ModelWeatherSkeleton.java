@@ -3,9 +3,11 @@ package com.william.weatherskeleton.client.model;
 //Paste this code into your mod.
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
 public class ModelWeatherSkeleton extends ModelBase
@@ -18,8 +20,14 @@ public class ModelWeatherSkeleton extends ModelBase
     public ModelRenderer main;
     public ModelRenderer head;
     
+    public ModelBiped.ArmPose left_arm_pose;
+    public ModelBiped.ArmPose right_arm_pose;
+    
     public ModelWeatherSkeleton()
     {
+        this.left_arm_pose = ModelBiped.ArmPose.EMPTY;
+        this.right_arm_pose = ModelBiped.ArmPose.EMPTY;
+        
         textureWidth = 244;
         textureHeight = 195;
     
@@ -205,9 +213,34 @@ public class ModelWeatherSkeleton extends ModelBase
         
         this.right_arm.rotateAngleY = 0.0F;
         this.right_arm.rotateAngleZ = 0.0F;
-        
-        this.left_arm.rotateAngleY = 0.0F;
-        this.right_arm.rotateAngleY = 0.0F;
+    
+        switch (this.left_arm_pose)
+        {
+            case EMPTY:
+                this.left_arm.rotateAngleY = 0.0F;
+                break;
+            case BLOCK:
+                this.left_arm.rotateAngleX = this.left_arm.rotateAngleX * 0.5F - 0.9424779F;
+                this.left_arm.rotateAngleY = 0.5235988F;
+                break;
+            case ITEM:
+                this.left_arm.rotateAngleX = this.left_arm.rotateAngleX * 0.5F - ((float)Math.PI / 10F);
+                this.left_arm.rotateAngleY = 0.0F;
+        }
+    
+        switch (this.right_arm_pose)
+        {
+            case EMPTY:
+                this.right_arm.rotateAngleY = 0.0F;
+                break;
+            case BLOCK:
+                this.right_arm.rotateAngleX = this.right_arm.rotateAngleX * 0.5F - 0.9424779F;
+                this.right_arm.rotateAngleY = -0.5235988F;
+                break;
+            case ITEM:
+                this.right_arm.rotateAngleX = this.right_arm.rotateAngleX * 0.5F - ((float)Math.PI / 10F);
+                this.right_arm.rotateAngleY = 0.0F;
+        }
         
         if (this.swingProgress > 0.0F)
         {
@@ -251,41 +284,32 @@ public class ModelWeatherSkeleton extends ModelBase
         this.hat.rotateAngleX = this.head.rotateAngleX;
     }
     
-    /*public void setHeadVisible()
+    public void postRenderArm(float scale, EnumHandSide side)
     {
-        setVisible(true);
-        this.head.showModel = false;
+        //this.getArmForSide(side).postRender(scale);
+        float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
+        ModelRenderer renderer = this.getArmForSide(side);
+        renderer.rotationPointX += f;
+        renderer.postRender(scale);
+        renderer.rotationPointX -= f;
     }
     
-    public void setHead1Visible()
+    protected ModelRenderer getArmForSide(EnumHandSide side)
     {
-        setVisible(true);
-        this.head1.showModel = false;
+        return side == EnumHandSide.LEFT ? this.left_arm : this.right_arm;
     }
     
-    public void setHatVisible()
+    @Override
+    public void setModelAttributes(ModelBase model)
     {
-        setVisible(true);
-        this.hat.showModel = false;
+        super.setModelAttributes(model);
+        
+        if (model instanceof ModelWeatherSkeleton)
+        {
+            ModelWeatherSkeleton modelWeatherSkeleton = (ModelWeatherSkeleton)model;
+            this.left_arm_pose = modelWeatherSkeleton.left_arm_pose;
+            this.right_arm_pose = modelWeatherSkeleton.right_arm_pose;
+            //this.isSneak = modelWeatherSkeleton.isSneak;
+        }
     }
-    
-    public void setMainVisible()
-    {
-        setVisible(true);
-        this.main.showModel = false;
-        this.left_arm.showModel = false;
-        this.right_arm.showModel = false;
-        this.left_leg.showModel = false;
-        this.right_leg.showModel = false;
-    }
-    
-    public void setVisible(boolean visible)
-    {
-        this.hat.showModel = visible;
-        this.main.showModel = visible;
-        this.left_arm.showModel = visible;
-        this.right_arm.showModel = visible;
-        this.left_leg.showModel = visible;
-        this.right_leg.showModel = visible;
-    }*/
 }

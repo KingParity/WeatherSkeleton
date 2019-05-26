@@ -1,17 +1,18 @@
-package com.william.weatherskeleton.client.model;
+package com.william.weatherskeleton.client.layer;
 
+import com.william.weatherskeleton.client.model.*;
 import com.william.weatherskeleton.client.render.RenderWeatherSkeleton;
 import com.william.weatherskeleton.entity.EntityWeatherSkeleton;
 import com.william.weatherskeleton.util.Reference;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 
-public class LayerWeatherSkeleton implements LayerRenderer<EntityWeatherSkeleton>
+public class LayerWSParts implements LayerRenderer<EntityWeatherSkeleton>
 {
     private final RenderWeatherSkeleton renderer;
     private ModelWeatherSkeleton hat, head, shirt;
     
-    public LayerWeatherSkeleton(RenderWeatherSkeleton rendererIn)
+    public LayerWSParts(RenderWeatherSkeleton rendererIn)
     {
         this.renderer = rendererIn;
     }
