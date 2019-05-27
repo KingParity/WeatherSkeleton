@@ -7,6 +7,8 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
@@ -183,11 +185,6 @@ public class ModelWeatherSkeleton extends ModelBase
         this.left_arm.rotationPointX = 5.0F;*/
         float f = 1.0F;
         
-        if (f < 1.0F)
-        {
-            f = 1.0F;
-        }
-        
         this.right_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 2.0F * limbSwingAmount * 0.5F / f;
         this.left_arm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / f;
         this.right_arm.rotateAngleZ = 0.0F;
@@ -244,8 +241,8 @@ public class ModelWeatherSkeleton extends ModelBase
         
         if (this.swingProgress > 0.0F)
         {
-            //EnumHandSide enumhandside = this.getMainHand(entityIn);
-            //ModelRenderer modelrenderer = this.getArmForSide(enumhandside);
+            EnumHandSide enumhandside = this.getMainHand(entityIn);
+            ModelRenderer modelrenderer = this.getArmForSide(enumhandside);
             float f1 = this.swingProgress;
             this.main.rotateAngleY = MathHelper.sin(MathHelper.sqrt(f1) * ((float)Math.PI * 2F)) * 0.2F;
             
@@ -262,9 +259,8 @@ public class ModelWeatherSkeleton extends ModelBase
             f1 = 1.0F - f1;
             float f2 = MathHelper.sin(f1 * (float)Math.PI);
             float f3 = MathHelper.sin(this.swingProgress * (float)Math.PI) * -(this.head.rotateAngleX - 0.7F) * 0.75F;
-            //float f3 = MathHelper.sin(this.swingProgress * (float)Math.PI) * -(this.fake - 0.7F) * 0.75F;
-            right_arm.rotateAngleX = (float)((double)right_arm.rotateAngleX - ((double)f2 * 1.2D + (double)f3));
-            right_arm.rotateAngleY += this.main.rotateAngleY * 2.0F;
+            modelrenderer.rotateAngleX = (float)((double)right_arm.rotateAngleX - ((double)f2 * 1.2D + (double)f3));
+            modelrenderer.rotateAngleY += this.main.rotateAngleY * 2.0F;
             //right_arm.rotateAngleZ += MathHelper.sin(this.swingProgress * (float)Math.PI) * -0.4F;
         }
         
@@ -286,12 +282,7 @@ public class ModelWeatherSkeleton extends ModelBase
     
     public void postRenderArm(float scale, EnumHandSide side)
     {
-        //this.getArmForSide(side).postRender(scale);
-        float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
-        ModelRenderer renderer = this.getArmForSide(side);
-        renderer.rotationPointX += f;
-        renderer.postRender(scale);
-        renderer.rotationPointX -= f;
+        this.getArmForSide(side).postRender(scale);
     }
     
     protected ModelRenderer getArmForSide(EnumHandSide side)
@@ -299,17 +290,40 @@ public class ModelWeatherSkeleton extends ModelBase
         return side == EnumHandSide.LEFT ? this.left_arm : this.right_arm;
     }
     
+    protected EnumHandSide getMainHand(Entity entityIn)
+    {
+        if (entityIn instanceof EntityLivingBase)
+        {
+            EntityLivingBase entitylivingbase = (EntityLivingBase)entityIn;
+            EnumHandSide enumhandside = entitylivingbase.getPrimaryHand();
+            return entitylivingbase.swingingHand == EnumHand.MAIN_HAND ? enumhandside : enumhandside.opposite();
+        }
+        else
+        {
+            return EnumHandSide.RIGHT;
+        }
+    }
+    
     @Override
     public void setModelAttributes(ModelBase model)
     {
         super.setModelAttributes(model);
         
-        if (model instanceof ModelWeatherSkeleton)
+        if(model instanceof ModelWeatherSkeleton)
         {
             ModelWeatherSkeleton modelWeatherSkeleton = (ModelWeatherSkeleton)model;
             this.left_arm_pose = modelWeatherSkeleton.left_arm_pose;
             this.right_arm_pose = modelWeatherSkeleton.right_arm_pose;
             //this.isSneak = modelWeatherSkeleton.isSneak;
         }
+    }
+    
+    @Override
+    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
+    {
+        this.left_arm_pose = ModelBiped.ArmPose.EMPTY;
+        this.right_arm_pose = ModelBiped.ArmPose.EMPTY;
+        
+        super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
     }
 }

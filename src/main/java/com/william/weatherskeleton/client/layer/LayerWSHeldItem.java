@@ -58,7 +58,7 @@ public class LayerWSHeldItem implements LayerRenderer<EntityWeatherSkeleton>
             GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
             boolean flag = handSide == EnumHandSide.LEFT;
-            GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, 0.125F, -0.625F);
+            GlStateManager.translate((float)(flag ? -10 : 10) / 16.0F, 0.125F, -0.625F);
             Minecraft.getMinecraft().getItemRenderer().renderItemSide(entity, item, transformType, flag);
             GlStateManager.popMatrix();
         }
