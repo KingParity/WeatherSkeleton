@@ -1,4 +1,0 @@
-{
-   "scream":             { "subtitle": "subtitle.weatherskeleton.scream",                "sounds": [{ "name": "weatherskeleton:scream" }]},
-   "death_scream":       { "subtitle": "subtitle.weatherskeleton.death_scream",          "sounds": [{ "name": "weatherskeleton:death_scream" }]}
-}
