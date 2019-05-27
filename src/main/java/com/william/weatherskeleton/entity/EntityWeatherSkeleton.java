@@ -11,7 +11,9 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -101,7 +103,15 @@ public class EntityWeatherSkeleton extends EntityCreature
     @Override
     protected boolean processInteract(EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote)
+        ItemStack itemstack = player.getHeldItem(hand);
+        boolean flag = itemstack.getItem() == Items.NAME_TAG;
+    
+        if(flag)
+        {
+            itemstack.interactWithEntity(player, this, hand);
+            return true;
+        }
+        else if(!world.isRemote)
         {
             PacketHandler.INSTANCE.sendToServer(new MessageWeatherSkeleton(this.getEntityId()));
         }

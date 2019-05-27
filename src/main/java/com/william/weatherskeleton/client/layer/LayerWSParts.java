@@ -95,7 +95,7 @@ public class LayerWSParts implements LayerRenderer<EntityWeatherSkeleton>
         this.head.setModelAttributes(this.renderer.getMainModel());
         this.head.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks);
         this.head.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-        
+    
         this.shirt.setModelAttributes(this.renderer.getMainModel());
         this.shirt.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks);
         this.shirt.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
@@ -104,6 +104,6 @@ public class LayerWSParts implements LayerRenderer<EntityWeatherSkeleton>
     @Override
     public boolean shouldCombineTextures()
     {
-        return true;
+        return false;
     }
 }
