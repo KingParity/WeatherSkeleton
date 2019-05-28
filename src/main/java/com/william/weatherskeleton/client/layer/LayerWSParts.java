@@ -104,6 +104,6 @@ public class LayerWSParts implements LayerRenderer<EntityWeatherSkeleton>
     @Override
     public boolean shouldCombineTextures()
     {
-        return false;
+        return true;
     }
 }
