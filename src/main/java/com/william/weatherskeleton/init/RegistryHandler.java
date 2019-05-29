@@ -38,7 +38,7 @@ public class RegistryHandler
             ITEMS.forEach(item -> event.getRegistry().register(item));
         }
     }
-
+    
     @Mod.EventBusSubscriber(modid = Reference.ID)
     public static class Blocks
     {

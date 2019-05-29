@@ -1,5 +1,6 @@
 package com.william.weatherskeleton.entity;
 
+import com.william.weatherskeleton.init.WeatherItems;
 import com.william.weatherskeleton.init.WeatherLootTables;
 import com.william.weatherskeleton.init.WeatherSounds;
 import com.william.weatherskeleton.network.MessageWeatherSkeleton;
@@ -152,6 +153,10 @@ public class EntityWeatherSkeleton extends EntityCreature
         this.setHat(getRandomHat(this.world.rand));
         this.setHead(getRandomHead(this.world.rand));
         this.setShirt(getRandomShirt(this.world.rand));
+        if(this.world.rand.nextInt(10) > 8)
+        {
+            this.replaceItemInInventory(98, new ItemStack(WeatherItems.KOA_SWORD));
+        }
         return livingdata;
     }
     
