@@ -1,0 +1,8 @@
+{
+    "scream": {
+        "sounds": [ {"name": "weatherskeleton:scream"}]
+    },
+    "death_scream": {
+        "sounds": [ {"name": "weatherskeleton:death_scream"}]
+    }
+}

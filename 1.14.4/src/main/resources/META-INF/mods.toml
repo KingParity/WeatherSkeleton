@@ -1,0 +1,26 @@
+modLoader="javafml" #mandatory
+loaderVersion="[28,)"
+
+[[mods]]
+modId="weatherskeleton"
+version="${file.jarVersion}"
+displayName="Weather Skeleton"
+updateJSONURL="http://myurl.me/"
+displayURL="http://example.com/"
+logoFile="examplemod.png"
+credits="The Forge and FML guys, for making forge. Shayzen_AG, for the idea of this mod and making most of the models. Blockbench, for the model creator that was used for all custom models in this mod"
+authors="KingIceCream, Shayzen_AG"
+description="Adds in weather skeletons"
+
+[[dependencies.weatherskeleton]] #optional
+    modId="forge"
+    mandatory=true
+    versionRange="[28,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.weatherskeleton]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"
